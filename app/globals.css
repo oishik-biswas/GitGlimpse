@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f1f1f1;
+  --foreground: #000000;
+  --gg-yellow: #ffd600;
+  --gg-blue: #3b82f6;
+  --gg-pink: #ff4d8d;
+  --gg-green: #b9ff66;
+  --gg-black: #000000;
+  --gg-white: #ffffff;
+  --gg-gray: #f1f1f1;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+  --font-black: var(--font-archivo-black);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+::selection {
+  background: var(--gg-pink);
+  color: var(--gg-black);
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  }
+
+  .font-black-display {
+    font-family: var(--font-archivo-black), var(--font-space-grotesk), Arial,
+      Helvetica, sans-serif;
+  }
+
+  .brutal-border {
+    border: 4px solid var(--gg-black);
+    box-shadow: 8px 8px 0 var(--gg-black);
+  }
+
+  .brutal-border-sm {
+    border: 3px solid var(--gg-black);
+    box-shadow: 5px 5px 0 var(--gg-black);
+  }
+
+  .grid-paper {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+}
+
+@media print {
+  body {
+    background: #ffffff;
+  }
+
+  header,
+  aside,
+  button {
+    display: none !important;
+  }
+
+  main,
+  section,
+  article {
+    box-shadow: none !important;
+  }
+
+  .brutal-border,
+  .brutal-border-sm {
+    box-shadow: none !important;
+  }
 }
